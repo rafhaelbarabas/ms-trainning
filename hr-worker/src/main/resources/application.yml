@@ -1,0 +1,15 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /worker/api
+spring:
+  application:
+    name: hr-worker
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:h2:mem:testmsdb
+    username: sa
+    password:
