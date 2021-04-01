@@ -26,3 +26,8 @@ hr-worker:
   rabbitmq:
     exchange: hrworker.exchange
     routingKey: hrworker.key
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
