@@ -1,10 +1,10 @@
 server:
-  port: 8001
+  port: 8002
   servlet:
-    context-path: /worker/api
+    context-path: /payroll/api
 spring:
   application:
-    name: hr-worker
+    name: hr-payroll
   jpa:
     show-sql: false
     hibernate:
@@ -13,7 +13,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql://localhost:3306/ms-worker?allowPublicKeyRetieval=true&sslMode=DISABLED&useSSL=false&serverTimezone=America/Sao_Paulo
+    url: jdbc:mysql://localhost:3306/ms-payroll?allowPublicKeyRetieval=true&sslMode=DISABLED&useSSL=false&serverTimezone=America/Sao_Paulo
     username: root
     password: mysql
   rabbitmq:
@@ -22,7 +22,11 @@ spring:
     username: admin
     password: admin
 
+hr-payroll:
+  rabbitmq:
+    exchange: hrpayroll.exchange
+    routingkey: hr.payroll.key
+
 hr-worker:
   rabbitmq:
-    exchange: hrworker.exchange
-    routingKey: hrworker.key
+    queue: workers.queue

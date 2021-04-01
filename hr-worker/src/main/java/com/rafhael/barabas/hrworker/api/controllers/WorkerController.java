@@ -2,6 +2,7 @@ package com.rafhael.barabas.hrworker.api.controllers;
 
 import com.rafhael.barabas.hrworker.entities.Worker;
 import com.rafhael.barabas.hrworker.repositories.WorkerRepository;
+import com.rafhael.barabas.hrworker.services.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,11 @@ import java.util.List;
 public class WorkerController {
 
     @Autowired
-    private WorkerRepository repository;
+    private WorkerService service;
 
     @GetMapping
     public ResponseEntity<List<Worker>> findAll() {
-        var workers = repository.findAll();
+        var workers = service.findAll();
         return ResponseEntity
                 .ok(workers);
     }
@@ -25,12 +26,12 @@ public class WorkerController {
     @GetMapping("/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
         return ResponseEntity
-                .ok(repository.findById(id).get());
+                .ok(service.findById(id));
     }
 
     @PostMapping
     public ResponseEntity<Worker> findById(@RequestBody Worker worker) {
         return ResponseEntity
-                .ok(repository.save(worker));
+                .ok(service.save(worker));
     }
 }
